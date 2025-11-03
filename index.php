@@ -36,7 +36,8 @@
             <?php
                 session_start();
                 if(isset($_SESSION["result"]) && !empty($_SESSION["result"])){
-                    echo "Le résultat de l'opération est : " . $_SESSION["result"];
+                    echo $_SESSION["result"];
+                    unset($_SESSION["result"]);
                 }
             ?>
         </main>

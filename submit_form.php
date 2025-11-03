@@ -6,14 +6,14 @@ if(
     !isset($_POST["second_number"]) ||
     !isset($_POST["operation"]))
 ){
-    echo "Veuillez compléter tous les champs";
+    $_SESSION["result"] = "Veuillez compléter tous les champs";
 } elseif(
     isset($_POST["submit"]) &&
     (empty($_POST["first_number"]) ||
     empty($_POST["second_number"]) ||
     empty($_POST["operation"]))
 ){
-    echo "Veuillez remplir tous les champs";
+    $_SESSION["result"] = "Veuillez remplir tous les champs";
 } else{
 
     $firstNumber = (float)strip_tags($_POST["first_number"]);
@@ -32,17 +32,17 @@ if(
             break;
         case "divide":
             if($secondNumber == 0){
-                echo "On ne peut pas diviser par 0";
+                $_SESSION["result"] = "On ne peut pas diviser par 0";
                 break;
             }
             $result = $firstNumber/$secondNumber;
             break;
         default:
-            echo "Chosissez une opération correcte !";
+            $_SESSION["result"] =  "Chosissez une opération correcte !";
             break;
     }
     session_start();
-    $_SESSION["result"] = $result;
+    $_SESSION["result"] = "Le résultat de l'opération est " . $result;
     header("Location: index.php");
 
 }
